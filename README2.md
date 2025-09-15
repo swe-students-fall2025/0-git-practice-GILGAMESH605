@@ -1,1 +1,11 @@
+# Reading Notes: One Billion Row Challenge (Go)
+
+## Article
+[One Billion Row Challenge in Golang — From 95s to 1.96s](https://r2p.dev/b/2024-03-18-1brc-go/)
+
+This article really stood out to me because it takes a very simple-sounding task—reading one billion lines of weather data and aggregating statistics—and turns it into a careful, step-by-step performance experiment. Instead of jumping straight to “just use concurrency,” the author first builds a correct baseline using straightforward Go code, and then gradually replaces parts of the implementation: the way the file is read, buffer sizes, how goroutines communicate, and even how floats are parsed. Every single change is measured and documented until the runtime goes from around 95 seconds all the way down to under 2 seconds. That process itself is what I found fascinating, because it feels like a professional engineering report rather than just a blog post with some code snippets.
+
+Another thing I liked was how practical the lessons are. The article shows that basic engineering principles—like controlling I/O patterns, reducing unnecessary allocations, and profiling hotspots with tools like `pprof`—often matter more than chasing “clever” algorithms. It also makes a clear point that concurrency is powerful, but not free: dividing work among goroutines means you have to handle edge cases like chunk boundaries, and you have to weigh the costs of communication. The small grid experiments with workers and buffer sizes were a good reminder that sometimes you just have to test systematically to find the sweet spot.
+
+As a student who is trying to grow beyond just writing code that “works,” this article is a reminder that engineering is about process and discipline. I want to carry this mindset into my own projects: start with a baseline, change one thing at a time, measure carefully, and only then decide if an optimization is worth it. It also motivates me to get more comfortable with tools like profilers instead of guessing where the bottleneck is. Overall, the article made me think less about “Go vs. Python vs. Java” and more about the habits of good engineers who can take any language and push it toward real-world performance.
 
